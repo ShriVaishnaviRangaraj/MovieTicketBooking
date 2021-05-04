@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/loginSignup.css">
+    <title>Mov!e BUZZ</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <div class="image">
+                <img src="../public/images/icon.svg">
+            </div>
+            <form  id="login" class="input-group" action="/login" method="POST">
+                <input type="text" id="mail1" name="email" class="input-field" placeholder="Email" required>
+                <input type="password" id="pass1" name="password" class="input-field" placeholder="Enter Password" required>
+                <a id="forgotpwd"href="#">Forgot Password ?</a><br>
+                <div class="nm">New Member ?<button type="button" class="toggle-btn" onclick="register()"><a style="text-decoration: underline; ">REGISTER</a></button></div><br>
+                <button type="submit"  class="submit-btn" onclick="confirmdetails()"><a style="text-decoration: none; color: white;">LOGIN</a></button>
+            </form>
+            <form id="register" class="input-group" action="/register" method="POST">
+                <label for="name">
+                    <input type="text" id="name" name="username" class="input-field" placeholder="Name" required>
+                    <ul class="input-requirements">
+                        <li>At least 3 characters long</li>
+                        <li>Must contain only letters</li>
+                    </ul>
+                </label>
+                <label for="email"> 
+                    <input type="email" id="email" name="email" class="input-field" placeholder="Email Id" required>
+                    <ul class="input-requirements">
+                        <li>Must be a valid mailID</li>
+                    </ul>
+                </label>
+                <label for="password">
+                    <input type="password" id="password" name="password" class="input-field" placeholder="Enter Password" required>
+                    <ul class="input-requirements">
+                        <li>At least 8 characters(less than 20)</li>
+						<li>At least 1 number</li>
+						<li>At least 1 lowercase</li>
+						<li>Atleast 1 uppercase</li>
+						<li>At least a special character</li>
+                    </ul>
+                </label>
+                <div class="nm">Already a Member ?<button type="button" class="toggle-btn" onclick="login()"><a style="text-decoration: underline; ">LOG IN</a></button></div><br>
+                <button type="submit"  class="submit-btn" onclick="return validate()"><a style="text-decoration: none; color: white;">Register</a></button>
+            </form>
+        
+        </div>
+    </div>
+        <script src="../public/js/valid.js">
+        
+
+        </script>
+        
+</body>
+</html>

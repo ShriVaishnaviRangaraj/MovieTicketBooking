@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet</title>
+    <!-- <link rel="stylesheet" href="Smark.css"> -->
+</head>
+<body>
+    <div class="container">
+        <div class="sub-container">
+            <table cellpadding="10px">
+                <center><h1>Bookings!!!</h1></center>
+                <tr>
+                    <th>S.No.</th>
+                    <th >Movie Name</th>
+                    <th >Screen No.</th>
+                    <th >TIME</th>
+                    <th >Seats Booked</th>
+                </tr>
+                <% if(rows.length != 0){%>
+                <%var i =1;%>
+                <%rows.forEach((row)=>{%>
+                <tr>
+                    <td><center><%=i%></center></td>
+                    <td><center><%=row.movieName%></center></td>
+                    <td><center><%=row.screenNo%></center></td>
+                    <td><center><%=row.time%></center></td>
+                    <td><center><%=row.count(isBooked)%></center></td>
+                </tr>
+                <%i++; });%>
+                <% } else {%>
+                    <tr>
+                        <td colspan="9" class="c">NO ENTRIES YET!!!</td>
+                    </tr>
+                <%}%>
+
+                <% if(rows2.length != 0){%>
+                    <%var i =1;%>
+                    <%rows2.forEach((row)=>{%>
+                    <tr>
+                        <td><center><%=i%></center></td>
+                        <td><center><%=row.movieName%></center></td>
+                        <td><center><%=row.screenNo%></center></td>
+                        <td><center><%=row.time%></center></td>
+                        <td><center><%=row.count(isBooked)%></center></td>
+                    </tr>
+                    <%i++; });%>
+                    <% } else {%>
+                        <tr>
+                            <td colspan="9" class="c">NO ENTRIES YET!!!</td>
+                        </tr>
+                    <%}%>
+
+                    <% if(rows3.length != 0){%>
+                        <%var i =1;%>
+                        <%rows3.forEach((row)=>{%>
+                        <tr>
+                            <td><center><%=i%></center></td>
+                            <td><center><%=row.movieName%></center></td>
+                            <td><center><%=row.screenNo%></center></td>
+                            <td><center><%=row.time%></center></td>
+                            <td><center><%=row.count(isBooked)%></center></td>
+                        </tr>
+                        <%i++; });%>
+                        <% } else {%>
+                            <tr>
+                                <td colspan="9" class="c">NO ENTRIES YET!!!</td>
+                            </tr>
+                        <%}%>
+
+                    <% if(rows4.length != 0){%>
+                        <%var i =1;%>
+                        <%rows4.forEach((row)=>{%>
+                        <tr>
+                            <td><center><%=i%></center></td>
+                            <td><center><%=row.movieName%></center></td>
+                            <td><center><%=row.screenNo%></center></td>
+                            <td><center><%=row.time%></center></td>
+                            <td><center><%=row.count(isBooked)%></center></td>
+                        </tr>
+                        <%i++; });%>
+                        <% } else {%>
+                        <tr>
+                            <td colspan="9" class="c">NO ENTRIES YET!!!</td>
+                        </tr>
+                    <%}%>
+
+                    <% if(rows5.length != 0){%>
+                        <%var i =1;%>
+                        <%rows5.forEach((row)=>{%>
+                        <tr>
+                            <td><center><%=i%></center></td>
+                            <td><center><%=row.movieName%></center></td>
+                            <td><center><%=row.screenNo%></center></td>
+                            <td><center><%=row.time%></center></td>
+                            <td><center><%=row.count(isBooked)%></center></td>
+                        </tr>
+                                <%i++; });%>
+                                <% } else {%>
+                                    <tr>
+                                        <td colspan="9" class="c">NO ENTRIES YET!!!</td>
+                                    </tr>
+                                <%}%>
+
+                                <% if(rows6.length != 0){%>
+                                    <%var i =1;%>
+                                    <%rows6.forEach((row)=>{%>
+                                    <tr>
+                                        <td><center><%=i%></center></td>
+                                        <td><center><%=row.movieName%></center></td>
+                                        <td><center><%=row.screenNo%></center></td>
+                                        <td><center><%=row.time%></center></td>
+                                        <td><center><%=row.count(isBooked)%></center></td>
+                                    </tr>
+                                    <%i++; });%>
+                                    <% } else {%>
+                                        <tr>
+                                            <td colspan="9" class="c">NO ENTRIES YET!!!</td>
+                                        </tr>
+                                    <%}%>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
