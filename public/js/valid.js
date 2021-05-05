@@ -178,14 +178,3 @@ var x=document.getElementById("login");
 				alert("Fill All The Fields...");
 			}
         }
-        
-        // submit.addEventListener('click', validate);
-        // form.addEventListener('submit', validate);
-        // function validate()
-        //     {
-        //         if(document.getElementById("male").checked==false && document.getElementById("female").checked==false && document.getElementById("other").checked==false)
-        //         {
-        //             alert("Select Gender...");
-        //             return false;
-        //         }
-        //     }

@@ -37,30 +37,12 @@ app.get('/logout',function(request,respond)
 
 app.get('/login',function(request,respond)
 {
-    if (request.session.loggedin)  {
-        if(email==="admin@gmail.com")
-        {
-            connection.query('SELECT movieName,screenNo,sum(isBooked) FROM booking1', function(error, res1) {
-                connection.query('SELECT movieName,screeNo,sum(isBooked) FROM booking2', function(error, res2) {
-                    connection.query('SELECT movieName,screeNo,sum(isBooked) FROM booking2', function(error, res3) {
-                        connection.query('SELECT movieName,screeNo,sum(isBooked) FROM booking2', function(error, res4) {
-                            connection.query('SELECT movieName,screeNo,sum(isBooked) FROM booking2', function(error, res5) {
-                                connection.query('SELECT movieName,screeNo,sum(isBooked) FROM booking2', function(error, res6) {
-                                    res.render('admin', { rows : res1, rows2: res2,rows3: res3,rows4: res4,rows5: res5,rows6: res6 });
-                                });
-                            });
-                        });
-                    });
-                });
-              });
-        }
-        else{
-            respond.sendFile(path.join(__dirname + '/views/home.html'));
-        }
-         
-    }
-    else
+    console.log('get login');
+    if(request.session.loggedin)
     {
+        respond.sendFile(path.join(__dirname + '/views/home.html'));
+    }
+    else{
         respond.send('Please login to view this page!');
     }
 });
@@ -269,6 +251,31 @@ app.post('/login',function(request,respond)
         else if(email==="admin@gmail.com" && result[0].password===password)
         {
             request.session.username = email;
+            request.session.loggedin = true;
+            var obj={},obj1={},obj2={},obj3={},obj4={},obj5={},obj6={};
+              connection.query('SELECT movieName,screeNo,time,sum(isBooked) as isBooked FROM booking1', function(error, res1) {
+                            const merge= Object.assign({},{admin1:res1});
+                connection.query('SELECT movieName,screeNo,time,sum(isBooked)  as isBooked FROM booking2', function(error, res2) {
+                            obj= Object.assign(merge,{admin2:res2});
+                connection.query('SELECT movieName,screeNo,time,sum(isBooked) as isBooked FROM booking3', function(error, res3) {
+                            obj= Object.assign(obj,{admin3:res3});
+                connection.query('SELECT movieName,screeNo,time,sum(isBooked) as isBooked FROM booking4', function(error, res4) {
+                            obj= Object.assign(obj,{admin4:res4});
+                connection.query('SELECT movieName,screeNo,time,sum(isBooked) as isBooked FROM booking5', function(error, res5) {
+                            obj= Object.assign(obj,{admin5:res5});
+                            
+                connection.query('SELECT movieName,screeNo,time,sum(isBooked) as isBooked FROM booking6', function(error, res6) {
+                            obj= Object.assign(obj,{admin6:res6});
+                            console.log(obj);
+
+                            respond.render('admin', obj);
+                });
+                });
+                });
+                });
+                });
+            });
+                                            
         }
         
         else
@@ -289,4 +296,4 @@ app.get('*',(request,respond)=>
 {
     respond.send("Page Not Found");
 });
-app.listen(1609);
+app.listen(1600);

@@ -47,6 +47,11 @@ if (
 
 
 });
-
-
+var array=[];
+function myFunction(data){
+  array.push(data);
+}
+function showBooking(){
+  alert(array);
+}
 

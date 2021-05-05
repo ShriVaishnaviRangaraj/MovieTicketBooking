@@ -31,9 +31,9 @@
           <% var i=1 %>
             <% booked.forEach(function (book) { %>
             <%if(book.isBooked === 0) { %>
-                <div   class="seat"  id="seat" ></div>
+                <div   class="seat"  id='<%= i%>' onclick="myFunction('<%= i%>')"></div>
             <% } else {%>
-                <div id="seat" class="seat occupied"></div>
+                <div id='<%= i%>' onclick="myFunction('<%= i%>')" class="seat occupied"></div>
             <%}i++;})%>
       </div>
     </div>
@@ -46,7 +46,7 @@
     </p>
 
     <form action="/successful" >
-      <button class="btn-home">
+      <button onclick="showBooking()         " class="btn-home">
         Book
       </button> <a href="home.html"><button class="btn-home">
         Home
