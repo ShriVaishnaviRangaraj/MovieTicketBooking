@@ -2,56 +2,70 @@ const container = document.querySelector('.container');
 const seats = document.querySelectorAll('.row .seat:not(.occupied)');
 const count = document.getElementById('count');
 const price = document.getElementById('price');
-var array=[];
-const populateUI = () => {
-  const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
-
-  if (selectedSeats !== null && selectedSeats.length > 0) {
-    seats.forEach((seat, index) => {
-      if (selectedSeats.indexOf(index) > -1) {
-        seat.classList.add('selected');
-      }
-    });
-  }
-};
-
-populateUI();
-var book=0;
-const updateSelectedSeatsCount = () => {
-  const selectedSeats = document.querySelectorAll('.row .selected');
-  const seatsIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat));
-
-  localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
-
-  const selectedSeatsCount = selectedSeats.length;
-  book=selectedSeatsCount;
-  count.innerText = selectedSeatsCount;
-  price.innerText = selectedSeatsCount * 250;
-};
-
-// Seat select event
+var selectedSeats= document.querySelectorAll('.row .selected');
+  var seatsIndex= [...selectedSeats].map(seat => [...seats].indexOf(seat));
 container.addEventListener('click', e => {
-    if(book==4)
+     
+    if(seatsIndex.length>4)
     {
-        alert("Maximum limit crossed");
+        alert("Maximum Booking limit crossed");
     }
-if (
-    e.target.classList.contains('seat') &&
-    !e.target.classList.contains('occupied') && book<4
-  ) {
-      console.log(book);
-    e.target.classList.toggle('selected');
+    if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied') ) 
+    {
+      if(seatsIndex.length==4)
+      {
+        
+        if(e.target.classList.contains('selected'))
+        {
+          e.target.classList.remove('selected');
+          selectedSeats = document.querySelectorAll('.row .selected');
+          seatsIndex= [...selectedSeats].map(seat => [...seats].indexOf(seat));
+        }
+        else
+        {
+          alert("Maximum Booking limit crossed");
+        }
+      }
+      else
+      {
+        e.target.classList.toggle('selected');
+        selectedSeats = document.querySelectorAll('.row .selected');
+        seatsIndex= [...selectedSeats].map(seat => [...seats].indexOf(seat));
+      }
 
-    updateSelectedSeatsCount();
-  }
-
-
+      const selectedSeatsCount = selectedSeats.length;
+      book=selectedSeatsCount;
+      count.innerText = selectedSeatsCount;
+      price.innerText = selectedSeatsCount * 250;
+      
+    }
 });
-var array=[];
-function myFunction(data){
-  array.push(data);
-}
+
+
 function showBooking(){
-  alert(array);
+  if(seatsIndex.length==0)
+  {
+    alert("Book atleast one seat!!");
+    return false;
+  }
+  else
+  {
+    var seats=[];
+    seatsIndex.map(function(item) { 
+      seats.push(item+1); 
+    });
+    let seat=seats;
+      fetch("http//:localhost/1600/success",
+      {method:"post", 
+        body:JSON.stringify(seats),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8'
+        }
+      });
+  }
+  
 }
+
+
+   
 
