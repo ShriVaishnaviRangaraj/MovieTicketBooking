@@ -6,6 +6,7 @@ var path = require('path');
 var router = express.Router();
 const session = require('express-session');
 const { response } = require('express');
+var  alert = require('alert');
 app.use(express.static(__dirname));
 app.use(express.json());
 app.set('view engine','ejs');
@@ -46,6 +47,15 @@ app.get('/login',function(request,respond)
         respond.send('Please login to view this page!');
     }
 });
+// app.get('/success',function(request,respond)
+// {
+//     if (request.session.loggedin)  {
+//         respond.send('Booking Successful!!!');
+//     }
+//     else{
+//         respond.send('Please login to view this page!');
+//     }
+// });
 
 app.get('/home',function(request,respond) 
 {
@@ -57,11 +67,11 @@ app.get('/home',function(request,respond)
         respond.send('Please login to view this page!');
     }
 });
-app.get('/successful',function(request,respond) 
+app.post('/success',function(request,respond) 
 {
     if (request.session.loggedin)  {
-        respond.sendFile(path.join('Booking Successfull!!'));
-        respond.sendFile(path.join(__dirname + '/views/home.html')); 
+        console.log(request.body.net, 'net');
+        respond.send('Booking Successfull!!'); 
     }
     else
     {
@@ -242,17 +252,16 @@ app.post('/login',function(request,respond)
     var email = request.body.email;
     var password = request.body.password;
     connection.query('SELECT password FROM users WHERE email LIKE ? AND password LIKE ?',[email,password],(err,result) => {
-
-        if(err)
+        if(result=='')
         {
-            throw err;
-            //respond.send("Check your Entries Again :)")
+            window.alert("This is an alert.");
+            respond.sendFile(path.join(__dirname + '/views/index.html'));
         } 
         else if(email==="admin@gmail.com" && result[0].password===password)
         {
             request.session.username = email;
             request.session.loggedin = true;
-            var obj={},obj1={},obj2={},obj3={},obj4={},obj5={},obj6={};
+            var obj={};
               connection.query('SELECT movieName,screeNo,time,sum(isBooked) as isBooked FROM booking1', function(error, res1) {
                             const merge= Object.assign({},{admin1:res1});
                 connection.query('SELECT movieName,screeNo,time,sum(isBooked)  as isBooked FROM booking2', function(error, res2) {
@@ -287,6 +296,7 @@ app.post('/login',function(request,respond)
                 respond.sendFile(path.join(__dirname + '/views/home.html'));
             }
             else{
+                alert("This is an alert.");
                 respond.sendFile(path.join(__dirname + '/views/index.html'));
             }
         }
